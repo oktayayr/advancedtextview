@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -15,7 +16,12 @@ import android.widget.TextView;
  * Created by Oktay AYAR on 5/20/16.
  */
 public class AdvancedTextView extends TextView {
+  private static final String ROBOTO_REGULAR = "fonts/Roboto-Medium.ttf";
+  private static final String ROBOTO_MEDIUM = "fonts/Roboto-Regular.ttf";
+  private static final String[] FONT_FILES = new String[] { ROBOTO_REGULAR, ROBOTO_MEDIUM };
+
   private boolean justifyText;
+  private String fontFile;
   private String text;
 
   private int mViewWidth;
@@ -61,18 +67,37 @@ public class AdvancedTextView extends TextView {
     }
   }
 
-  @Override protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-    super.onSizeChanged(w, h, oldw, oldh);
+  @Override protected void onFinishInflate() {
+    super.onFinishInflate();
+
+    if (this.fontFile != null && fontFile.length() > 0) {
+      // Load font
+      loadFont(this.fontFile);
+    }
   }
 
   private void obtainAttributes(AttributeSet attrs, int defStyleAttr, int defStyleRes) {
     TypedArray arr = getContext().getTheme()
         .obtainStyledAttributes(attrs, R.styleable.AdvancedTextView, defStyleAttr, defStyleRes);
 
-    justifyText = arr.getBoolean(R.styleable.AdvancedTextView_justifyText, false);
+    this.justifyText = arr.getBoolean(R.styleable.AdvancedTextView_justifyText, false);
+
+    // Obtain font file
+    int font = arr.getInt(R.styleable.AdvancedTextView_font, 0);
+    if (font > 0) {
+      this.fontFile = FONT_FILES[font - 1];
+    } else {
+      fontFile = arr.getString(R.styleable.AdvancedTextView_fontFile);
+    }
   }
 
-  protected void drawJustified(Canvas canvas) {
+  private void loadFont(String fontFile) {
+    Typeface font = Typeface.createFromAsset(getContext().getAssets(), fontFile);
+
+    setTypeface(font);
+  }
+
+  private void drawJustified(Canvas canvas) {
     TextPaint paint = this.getPaint();
     paint.setColor(this.getCurrentTextColor());
     paint.drawableState = this.getDrawableState();
