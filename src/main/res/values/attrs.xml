@@ -3,8 +3,8 @@
   <declare-styleable name="AdvancedTextView">
     <attr format="boolean" name="justifyText"/>
     <attr format="enum" name="font">
-      <enum name="roboto-regular">1</enum>
-      <enum name="roboto-medium">2</enum>
+      <enum name="roboto_regular" value="1"/>
+      <enum name="roboto_medium" value="2"/>
     </attr>
 
     <attr name="fontFile" format="string"/>
