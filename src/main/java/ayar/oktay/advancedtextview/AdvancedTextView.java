@@ -28,6 +28,8 @@ public class AdvancedTextView extends TextView {
   private boolean expandable;
   private String expandText;
   private int expandTextColor;
+  private boolean autoFit;
+  private int minFontSize;
 
   private String text;
 
@@ -100,6 +102,8 @@ public class AdvancedTextView extends TextView {
     this.expandText = arr.getString(R.styleable.AdvancedTextView_expandText);
     this.expandTextColor = arr.getColor(R.styleable.AdvancedTextView_expandTextColor,
         Color.parseColor(DEFAULT_EXPAND_TEXT_COLOR));
+    this.autoFit = arr.getBoolean(R.styleable.AdvancedTextView_autoFit, false);
+    this.minFontSize = arr.getDimensionPixelSize(R.styleable.AdvancedTextView_minFontSize, -1);
 
     // Obtain font file
     int font = arr.getInt(R.styleable.AdvancedTextView_font, 0);

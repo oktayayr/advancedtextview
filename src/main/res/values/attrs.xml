@@ -6,9 +6,11 @@
       <enum name="roboto_regular" value="1"/>
       <enum name="roboto_medium" value="2"/>
     </attr>
-    <attr name="fontFile" format="string"/>
-    <attr name="expandable" format="boolean"/>
-    <attr name="expandText" format="string"/>
-    <attr name="expandTextColor" format="color"/>
+    <attr format="string" name="fontFile"/>
+    <attr format="boolean" name="expandable"/>
+    <attr format="string" name="expandText"/>
+    <attr format="color" name="expandTextColor"/>
+    <attr format="boolean" name="autoFit"/>
+    <attr format="dimension" name="minFontSize"></attr>
   </declare-styleable>
 </resources>
