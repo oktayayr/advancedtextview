@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.text.Layout;
@@ -16,14 +17,21 @@ import android.widget.TextView;
  * Created by Oktay AYAR on 5/20/16.
  */
 public class AdvancedTextView extends TextView {
-  private static final String ROBOTO_REGULAR = "fonts/Roboto-Medium.ttf";
-  private static final String ROBOTO_MEDIUM = "fonts/Roboto-Regular.ttf";
+  private static final String ROBOTO_REGULAR = "fonts/Roboto-Regular.ttf";
+  private static final String ROBOTO_MEDIUM = "fonts/Roboto-Medium.ttf";
   private static final String[] FONT_FILES = new String[] { ROBOTO_REGULAR, ROBOTO_MEDIUM };
+
+  private static final String DEFAULT_EXPAND_TEXT_COLOR = "#C5C5C5";
 
   private boolean justifyText;
   private String fontFile;
+  private boolean expandable;
+  private String expandText;
+  private int expandTextColor;
+
   private String text;
 
+  private boolean expandTextShown;
   private int mViewWidth;
   private int mLineY;
 
@@ -32,6 +40,10 @@ public class AdvancedTextView extends TextView {
 
     // Set defaults
     justifyText = false;
+    fontFile = null;
+    expandable = false;
+    expandTextColor = 0;
+    expandText = null;
   }
 
   public AdvancedTextView(Context context, AttributeSet attrs) {
@@ -60,6 +72,12 @@ public class AdvancedTextView extends TextView {
   }
 
   @Override protected void onDraw(Canvas canvas) {
+    if (expandable && !expandTextShown) {
+      initExpandable(this.expandText, this.expandTextColor);
+
+      expandTextShown = true;
+    }
+
     if (!justifyText) {
       super.onDraw(canvas);
     } else {
@@ -70,10 +88,7 @@ public class AdvancedTextView extends TextView {
   @Override protected void onFinishInflate() {
     super.onFinishInflate();
 
-    if (this.fontFile != null && fontFile.length() > 0) {
-      // Load font
-      loadFont(this.fontFile);
-    }
+    init();
   }
 
   private void obtainAttributes(AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -81,6 +96,10 @@ public class AdvancedTextView extends TextView {
         .obtainStyledAttributes(attrs, R.styleable.AdvancedTextView, defStyleAttr, defStyleRes);
 
     this.justifyText = arr.getBoolean(R.styleable.AdvancedTextView_justifyText, false);
+    this.expandable = arr.getBoolean(R.styleable.AdvancedTextView_expandable, false);
+    this.expandText = arr.getString(R.styleable.AdvancedTextView_expandText);
+    this.expandTextColor = arr.getColor(R.styleable.AdvancedTextView_expandTextColor,
+        Color.parseColor(DEFAULT_EXPAND_TEXT_COLOR));
 
     // Obtain font file
     int font = arr.getInt(R.styleable.AdvancedTextView_font, 0);
@@ -88,6 +107,13 @@ public class AdvancedTextView extends TextView {
       this.fontFile = FONT_FILES[font - 1];
     } else {
       fontFile = arr.getString(R.styleable.AdvancedTextView_fontFile);
+    }
+  }
+
+  private void init() {
+    if (this.fontFile != null && fontFile.length() > 0) {
+      // Load font
+      loadFont(this.fontFile);
     }
   }
 
@@ -150,5 +176,22 @@ public class AdvancedTextView extends TextView {
 
   private boolean needScale(String line) {
     return line.length() == 0 ? false : line.charAt(line.length() - 1) != 10;
+  }
+
+  private void initExpandable(String expandText, int expandTextColor)
+      throws IllegalArgumentException, IlleagalUsageException {
+
+    if (!(getParent() instanceof ExpandableTextLayout)) {
+      throw new IlleagalUsageException("Expand feature can be only used in ExpandableTextLayout");
+    }
+
+    if (expandText == null || expandText.length() == 0) {
+      throw new IllegalArgumentException("expandText must be specified!!...");
+    }
+
+    ExpandableTextLayout expandableTextLayout = (ExpandableTextLayout) getParent();
+
+    float density = getContext().getResources().getDisplayMetrics().density;
+    expandableTextLayout.initExpandText(expandText, expandTextColor, getTextSize() / density, this);
   }
 }
