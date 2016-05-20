@@ -2,5 +2,11 @@
 <resources>
   <declare-styleable name="AdvancedTextView">
     <attr format="boolean" name="justifyText"/>
+    <attr format="enum" name="font">
+      <enum name="roboto-regular">1</enum>
+      <enum name="roboto-medium">2</enum>
+    </attr>
+
+    <attr name="fontFile" format="string"/>
   </declare-styleable>
 </resources>
