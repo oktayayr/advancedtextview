@@ -8,12 +8,12 @@ ext {
   libraryName = 'AdvancedTextView'
   artifact = 'advancedtextview'
 
-  libraryDescription = 'A Textview for Android which has advanced features '
+  libraryDescription = 'AdvancedTextView provides advanced features that simplifies complicated UI processes.'
 
   siteUrl = 'https://github.com/oktayayr/advancedtextview'
   gitUrl = 'https://github.com/oktayayr/advancedtextview.git'
 
-  libraryVersion = '0.1.0'
+  libraryVersion = '0.2.0'
 
   developerId = 'ayar'
   developerName = 'Oktay Ayar'
@@ -31,8 +31,8 @@ android {
   defaultConfig {
     minSdkVersion 16
     targetSdkVersion 23
-    versionCode 1
-    versionName "1.0"
+    versionCode 20
+    versionName "0.2.0"
   }
   buildTypes {
     release {
