@@ -1,4 +1,5 @@
 # AdvancedTextview
+[ ![Download](https://api.bintray.com/packages/ayar/maven/advancedtextview/images/download.svg) ](https://bintray.com/ayar/maven/advancedtextview/_latestVersion)
 
 AdvancedTextView provides advanced features that simplifies complicated UI processes.
 
@@ -18,16 +19,16 @@ There are 4 main feaures (for now):
     <dependency>
 		<groupId>ayar.oktay.library</groupId>
 		<artifactId>advancedtextview</artifactId>
-		<version>0.1.0</version>
+		<version>0.2.0</version>
 		<type>pom</type>
 	</dependency>
 
 ###Gradle
 
-    compile 'ayar.oktay.library:advancedtextview:0.1.0'
+    compile 'ayar.oktay.library:advancedtextview:0.2.0'
 ###Ivy
 
-    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.1.0'>
+    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.2.0'>
 	  <artifact name='$AID' ext='pom'></artifact>
 	</dependency>
 
