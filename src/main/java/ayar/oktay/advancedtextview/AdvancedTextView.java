@@ -36,9 +36,6 @@ public class AdvancedTextView extends TextView {
 
   private boolean expandTextShown;
 
-  /*private int mViewWidth;
-  private int mLineY;
-*/
   public AdvancedTextView(Context context) {
     super(context);
 
@@ -67,6 +64,62 @@ public class AdvancedTextView extends TextView {
     super(context, attrs, defStyleAttr, defStyleRes);
 
     obtainAttributes(attrs, defStyleAttr, defStyleRes);
+  }
+
+  public boolean isAutoFit() {
+    return autoFit;
+  }
+
+  public void setAutoFit(boolean autoFit) {
+    this.autoFit = autoFit;
+  }
+
+  public boolean isExpandable() {
+    return expandable;
+  }
+
+  public void setExpandable(boolean expandable) {
+    this.expandable = expandable;
+  }
+
+  public String getExpandText() {
+    return expandText;
+  }
+
+  public void setExpandText(String expandText) {
+    this.expandText = expandText;
+  }
+
+  public int getExpandTextColor() {
+    return expandTextColor;
+  }
+
+  public void setExpandTextColor(int expandTextColor) {
+    this.expandTextColor = expandTextColor;
+  }
+
+  public boolean isJustifyText() {
+    return justifyText;
+  }
+
+  public void setJustifyText(boolean justifyText) {
+    this.justifyText = justifyText;
+  }
+
+  public int getMinTextSize() {
+    return minTextSize;
+  }
+
+  public void setMinTextSize(int minTextSize) {
+    this.minTextSize = minTextSize;
+  }
+
+  public String getFontFile() {
+    return fontFile;
+  }
+
+  public void setFontFile(String fontFile) {
+    this.fontFile = fontFile;
   }
 
   @Override public void setText(CharSequence text, BufferType type) {
