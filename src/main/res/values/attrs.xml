@@ -11,6 +11,6 @@
     <attr format="string" name="expandText"/>
     <attr format="color" name="expandTextColor"/>
     <attr format="boolean" name="autoFit"/>
-    <attr format="dimension" name="minFontSize"></attr>
+    <attr format="dimension" name="minTextSize"/>
   </declare-styleable>
 </resources>
