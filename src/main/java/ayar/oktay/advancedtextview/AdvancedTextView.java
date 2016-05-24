@@ -33,6 +33,7 @@ public class AdvancedTextView extends TextView {
   private String text;
 
   private boolean expandTextShown;
+  private boolean heightSet;
 
   public AdvancedTextView(Context context) {
     super(context);
@@ -156,11 +157,15 @@ public class AdvancedTextView extends TextView {
       Layout autoFitLayout = createAutoFitLayout(this.getLayout(), this.getPaint(), autoFitTextSize,
           this.getLineSpacingMultiplier(), this.getLineSpacingExtra());
 
-      int maxLines = this.getMaxLines();
+      if (!heightSet) {
+        int maxLines = this.getMaxLines();
 
-      setHeight(autoFitLayout.getHeight() + getPaddingBottom() + getPaddingTop());
+        setHeight(autoFitLayout.getHeight() + getPaddingBottom() + getPaddingTop());
 
-      this.setMaxLines(maxLines);
+        this.setMaxLines(maxLines);
+
+        heightSet = true;
+      }
 
       drawJustified(canvas, autoFitLayout);
     } else if (autoFit) {
@@ -294,12 +299,15 @@ public class AdvancedTextView extends TextView {
     Layout autoFitLayout = createAutoFitLayout(this.getLayout(), this.getPaint(), autoFitTextSize,
         this.getLineSpacingMultiplier(), this.getLineSpacingExtra());
 
-    int maxLines = this.getMaxLines();
+    if (!heightSet) {
+      int maxLines = this.getMaxLines();
 
-    setHeight(autoFitLayout.getHeight() + getPaddingBottom() + getPaddingTop());
+      setHeight(autoFitLayout.getHeight() + getPaddingBottom() + getPaddingTop());
 
-    this.setMaxLines(maxLines);
+      this.setMaxLines(maxLines);
 
+      heightSet = true;
+    }
     for (int i = 0; i < autoFitLayout.getLineCount(); i++) {
       int lineStart = autoFitLayout.getLineStart(i);
       int lineEnd = autoFitLayout.getLineEnd(i);
