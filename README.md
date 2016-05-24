@@ -38,6 +38,8 @@ There are 4 main feaures (for now):
 
 You can use justified text alignment simply by adding one attribute to your xml file
 
+<img src="/arts/justifytext_ss.png" width="35%" height="35%" />
+
 ####XML File
 
     <ayar.oktay.advancedtextview.AdvancedTextView
@@ -105,6 +107,11 @@ You can also load .ttf file from assets folder by declaring in your xml file.
 AdvancedTextView provides expandable layout for long texts. You can use this feature with **ExpandableTextLayout**.
  `expandable`, `android:maxLines` and `expandText` must be set for expandable feature. You can also set expand text color with `expandTextColor` (Default is #C5C5C5)
 
+<img src="/arts/expandtext_ss1.png" width="35%" height="35%" />
+
+
+<img src="/arts/expandtext_ss2.png" width="35%" height="35%" />
+
     <ayar.oktay.advancedtextview.ExpandableTextLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -126,6 +133,9 @@ AdvancedTextView provides expandable layout for long texts. You can use this fea
 ###AutoFit Text
 
 You can fit your your texts into determined lines. You must set `autoFit` and `android:maxLines`  to use this feature.  You can also set minTextSize to determine minimum text size for auto fit process (Default is 6dp).
+
+<img src="/arts/autofit_ss.png" width="50%" height="50%" />
+
 
     <ayar.oktay.advancedtextview.AdvancedTextView
         android:layout_width="match_parent"
