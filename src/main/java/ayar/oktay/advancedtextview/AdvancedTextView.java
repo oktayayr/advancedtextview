@@ -17,9 +17,6 @@ import android.widget.TextView;
  * Created by Oktay AYAR on 5/20/16.
  */
 public class AdvancedTextView extends TextView {
-  private static final String ROBOTO_REGULAR = "fonts/Roboto-Regular.ttf";
-  private static final String ROBOTO_MEDIUM = "fonts/Roboto-Medium.ttf";
-  private static final String[] FONT_FILES = new String[] { ROBOTO_REGULAR, ROBOTO_MEDIUM };
   private static final String DEFAULT_EXPAND_TEXT_COLOR = "#C5C5C5";
   private final float DEF_MIN_TEXT_SIZE =
       6 * getContext().getResources().getDisplayMetrics().density;
