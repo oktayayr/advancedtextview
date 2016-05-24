@@ -19,16 +19,16 @@ There are 4 main feaures (for now):
     <dependency>
 		<groupId>ayar.oktay.library</groupId>
 		<artifactId>advancedtextview</artifactId>
-		<version>0.2.5</version>
+		<version>0.2.6</version>
 		<type>pom</type>
 	</dependency>
 
 ###Gradle
 
-    compile 'ayar.oktay.library:advancedtextview:0.2.5'
+    compile 'ayar.oktay.library:advancedtextview:0.2.6'
 ###Ivy
 
-    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.2.5'>
+    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.2.6'>
 	  <artifact name='$AID' ext='pom'></artifact>
 	</dependency>
 
