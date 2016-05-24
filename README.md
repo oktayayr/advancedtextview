@@ -19,16 +19,16 @@ There are 4 main feaures (for now):
     <dependency>
 		<groupId>ayar.oktay.library</groupId>
 		<artifactId>advancedtextview</artifactId>
-		<version>0.2.0</version>
+		<version>0.2.5</version>
 		<type>pom</type>
 	</dependency>
 
 ###Gradle
 
-    compile 'ayar.oktay.library:advancedtextview:0.2.0'
+    compile 'ayar.oktay.library:advancedtextview:0.2.5'
 ###Ivy
 
-    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.2.0'>
+    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.2.5'>
 	  <artifact name='$AID' ext='pom'></artifact>
 	</dependency>
 
@@ -57,6 +57,8 @@ You can use custom fonts with AdvancedTextview.
 
 Fonts listed below are available to use without loading .ttf file. 
 
+
+
 ![Aller](/arts/aller.png)
 
 ![Bebas](/arts/bebas.png)
@@ -74,6 +76,8 @@ Fonts listed below are available to use without loading .ttf file.
 ![Pacifico](/arts/pacifico.png)
 
 ![Roboto](/arts/roboto.png)
+
+
 
 
 You can use any of them by declaring in your xml file.
