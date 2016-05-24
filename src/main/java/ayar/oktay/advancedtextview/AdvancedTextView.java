@@ -17,9 +17,6 @@ import android.widget.TextView;
  * Created by Oktay AYAR on 5/20/16.
  */
 public class AdvancedTextView extends TextView {
-  private static final String ROBOTO_REGULAR = "fonts/Roboto-Regular.ttf";
-  private static final String ROBOTO_MEDIUM = "fonts/Roboto-Medium.ttf";
-  private static final String[] FONT_FILES = new String[] { ROBOTO_REGULAR, ROBOTO_MEDIUM };
   private static final String DEFAULT_EXPAND_TEXT_COLOR = "#C5C5C5";
   private final float DEF_MIN_TEXT_SIZE =
       6 * getContext().getResources().getDisplayMetrics().density;
@@ -31,6 +28,7 @@ public class AdvancedTextView extends TextView {
   private int expandTextColor;
   private boolean autoFit;
   private int minTextSize;
+  private Font font;
 
   private String text;
 
@@ -114,12 +112,26 @@ public class AdvancedTextView extends TextView {
     this.minTextSize = minTextSize;
   }
 
-  public String getFontFile() {
-    return fontFile;
-  }
-
   public void setFontFile(String fontFile) {
     this.fontFile = fontFile;
+
+    if (fontFile != null) {
+      loadFont(fontFile);
+    }
+  }
+
+  public Font getFont() {
+    return font;
+  }
+
+  public void setFont(Font font) {
+    this.font = font;
+
+    if (font != null) {
+      this.fontFile = font.getFileName();
+
+      loadFont(this.fontFile);
+    }
   }
 
   @Override public void setText(CharSequence text, BufferType type) {
@@ -179,10 +191,10 @@ public class AdvancedTextView extends TextView {
 
     // Obtain font file
     int font = arr.getInt(R.styleable.AdvancedTextView_font, 0);
-    if (font > 0) {
-      this.fontFile = FONT_FILES[font - 1];
+    if (font > 0 && Font.parse(font) != null) {
+      this.fontFile = Font.parse(font).getFileName();
     } else {
-      fontFile = arr.getString(R.styleable.AdvancedTextView_fontFile);
+      this.fontFile = arr.getString(R.styleable.AdvancedTextView_fontFile);
     }
   }
 
