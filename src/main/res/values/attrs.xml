@@ -3,8 +3,38 @@
   <declare-styleable name="AdvancedTextView">
     <attr format="boolean" name="justifyText"/>
     <attr format="enum" name="font">
-      <enum name="roboto_regular" value="1"/>
-      <enum name="roboto_medium" value="2"/>
+      <enum name="aller_bold" value="0"/>
+      <enum name="aller_bold_italic" value="1"/>
+      <enum name="aller_display" value="2"/>
+      <enum name="aller_light" value="3"/>
+      <enum name="aller_light_italic" value="4"/>
+      <enum name="aller_regular" value="5"/>
+      <enum name="amatic_regular" value="6"/>
+      <enum name="amatic_bold" value="7"/>
+      <enum name="bebas" value="8"/>
+      <enum name="capture" value="10"/>
+      <enum name="caviar_dreams" value="11"/>
+      <enum name="caviar_dreams_bold" value="12"/>
+      <enum name="caviar_dreams_bold_italic" value="13"/>
+      <enum name="caviar_dreams_italic" value="14"/>
+      <enum name="droid_sans" value="15"/>
+      <enum name="droid_sans_bold" value="16"/>
+      <enum name="journal" value="17"/>
+      <enum name="open_sans_bold" value="18"/>
+      <enum name="open_sans_bold_italic" value="19"/>
+      <enum name="open_sans_italic" value="20"/>
+      <enum name="open_sans_light" value="21"/>
+      <enum name="open_sans_light_italic" value="22"/>
+      <enum name="open_sans_regular" value="23"/>
+      <enum name="pacifico" value="24"/>
+      <enum name="roboto_regular" value="25"/>
+      <enum name="roboto_bold" value="26"/>
+      <enum name="roboto_bold_italic" value="27"/>
+      <enum name="roboto_italic" value="28"/>
+      <enum name="roboto_light" value="29"/>
+      <enum name="roboto_light_italic" value="30"/>
+      <enum name="roboto_medium" value="31"/>
+      <enum name="roboto_medium_italic" value="32"/>
     </attr>
     <attr format="string" name="fontFile"/>
     <attr format="boolean" name="expandable"/>
