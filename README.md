@@ -57,8 +57,24 @@ You can use custom fonts with AdvancedTextview.
 
 Fonts listed below are available to use without loading .ttf file. 
 
-* Roboto Regular
-* Roboto Medium
+![Aller](/arts/aller.png)
+
+![Bebas](/arts/bebas.png)
+
+![Capture It](/arts/capture.png)
+
+![Caviar Dreams](/arts/caviar_dreams.png)
+
+![Droid Sans](/arts/droid_sans.png)
+
+![Journal](/arts/journal.png)
+
+![Open Sans](/arts/open_sans.png)
+
+![Pacifico](/arts/pacifico.png)
+
+![Roboto](/arts/roboto.png)
+
 
 You can use any of them by declaring in your xml file.
 
