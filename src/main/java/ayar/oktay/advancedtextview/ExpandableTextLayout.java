@@ -57,7 +57,7 @@ public class ExpandableTextLayout extends LinearLayout implements View.OnClickLi
     expandTv.setText(expandText);
     expandTv.setTextColor(expandTextColor);
     expandTv.setTextSize(textSize);
-    expandTv.setPadding(0, (int) ((float) atv.getLineHeight() / density), 0, 0);
+    expandTv.setPadding(0, (int) ((float) atv.getLineHeight() / density)-1, 0, 0);
     expandTv.setClickable(true);
     expandTv.setOnClickListener(this);
 
