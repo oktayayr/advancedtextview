@@ -272,18 +272,22 @@ public class AdvancedTextView extends TextView {
   }
 
   private void initExpandable(String expandText, int expandTextColor)
-      throws IllegalArgumentException, IlleagalUsageException {
+      throws IllegalAttributeException, IlleagalUsageException {
 
     if (!(getParent() instanceof ExpandableTextLayout)) {
       throw new IlleagalUsageException("Expand feature can be only used in ExpandableTextLayout");
     }
 
     if (expandText == null || expandText.length() == 0) {
-      throw new IllegalArgumentException("expandText must be specified!!...");
+      throw new IllegalAttributeException("expandText must be specified!!...");
     }
 
     if (autoFit) {
       throw new IlleagalUsageException("Expandable feature cannot be used with auto-fit feature");
+    }
+
+    if (this.getMaxLines() < 1 || this.getMaxLines() == Integer.MAX_VALUE) {
+      return;
     }
 
     ExpandableTextLayout expandableTextLayout = (ExpandableTextLayout) getParent();
@@ -308,6 +312,7 @@ public class AdvancedTextView extends TextView {
 
       heightSet = true;
     }
+
     for (int i = 0; i < autoFitLayout.getLineCount(); i++) {
       int lineStart = autoFitLayout.getLineStart(i);
       int lineEnd = autoFitLayout.getLineEnd(i);
@@ -319,8 +324,8 @@ public class AdvancedTextView extends TextView {
 
   private float getAutoFitTextSize(String text, int viewWidth, int maxLines, int minFontSize) {
 
-    if (maxLines < 0 || maxLines == Integer.MAX_VALUE) {
-      throw new IllegalArgumentException(
+    if (maxLines < 1 || maxLines == Integer.MAX_VALUE) {
+      throw new IllegalAttributeException(
           "maxLines (" + maxLines + ") must be valid to use auto-fit feature");
     }
 
@@ -337,7 +342,7 @@ public class AdvancedTextView extends TextView {
     float textSize = paint.getTextSize();
 
     if (textSize < minFontSize) {
-      throw new IllegalArgumentException("Text size cannot be smaller than minTextSize");
+      throw new IllegalAttributeException("Text size cannot be smaller than minTextSize");
     }
 
     while (lineCount > maxLines && textSize > minFontSize) {
