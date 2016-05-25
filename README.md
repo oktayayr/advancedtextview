@@ -19,16 +19,16 @@ There are 4 main feaures (for now):
     <dependency>
 		<groupId>ayar.oktay.library</groupId>
 		<artifactId>advancedtextview</artifactId>
-		<version>0.2.6</version>
+		<version>0.2.7</version>
 		<type>pom</type>
 	</dependency>
 
 ###Gradle
 
-    compile 'ayar.oktay.library:advancedtextview:0.2.6'
+    compile 'ayar.oktay.library:advancedtextview:0.2.7'
 ###Ivy
 
-    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.2.6'>
+    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.2.7'>
 	  <artifact name='$AID' ext='pom'></artifact>
 	</dependency>
 
@@ -48,10 +48,6 @@ You can use justified text alignment simply by adding one attribute to your xml 
             android:text="@string/very_long_text"
             app:justifyText="true"
             />
-
-#### Code
-
-    atv.setJustified(true);
 
 ###Custom Fonts
 
