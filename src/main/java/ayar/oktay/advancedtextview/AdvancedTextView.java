@@ -286,6 +286,10 @@ public class AdvancedTextView extends TextView {
       throw new IlleagalUsageException("Expandable feature cannot be used with auto-fit feature");
     }
 
+    if (this.getMaxLines() < 1 || this.getMaxLines() == Integer.MAX_VALUE) {
+      return;
+    }
+
     ExpandableTextLayout expandableTextLayout = (ExpandableTextLayout) getParent();
 
     float density = getContext().getResources().getDisplayMetrics().density;
@@ -308,6 +312,7 @@ public class AdvancedTextView extends TextView {
 
       heightSet = true;
     }
+
     for (int i = 0; i < autoFitLayout.getLineCount(); i++) {
       int lineStart = autoFitLayout.getLineStart(i);
       int lineEnd = autoFitLayout.getLineEnd(i);
