@@ -95,7 +95,7 @@ You can also load .ttf file from assets folder by declaring in your xml file.
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="@string/very_long_text"
-        app:fontFile="assets/your_font_file"
+        app:fontFile="path_to_your_font_file"
         />
 
 ###Expandable Text Layout
