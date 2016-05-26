@@ -155,6 +155,30 @@ public class AdvancedTextView extends TextView {
     }
   }
 
+  public boolean isExpandEllipsizeEnabled() {
+    return expandEllipsize;
+  }
+
+  public void setExpandEllipsize(boolean expandEllipsize) {
+    this.expandEllipsize = expandEllipsize;
+  }
+
+  public int getExpandTextPosition() {
+    return expandTextPosition;
+  }
+
+  public void setExpandTextPosition(int expandTextPosition) {
+    this.expandTextPosition = expandTextPosition;
+  }
+
+  public int getExpandTextSize() {
+    return expandTextSize;
+  }
+
+  public void setExpandTextSize(int expandTextSize) {
+    this.expandTextSize = expandTextSize;
+  }
+
   @Override public void setText(CharSequence text, BufferType type) {
     super.setText(text, type);
 
