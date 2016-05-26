@@ -14,7 +14,6 @@ import android.widget.TextView;
  */
 public class ExpandableTextLayout extends LinearLayout implements View.OnClickListener {
   private AdvancedTextView expandTarget;
-  private TextView expandTv;
   private boolean expanded;
 
   public ExpandableTextLayout(Context context) {
@@ -30,7 +29,6 @@ public class ExpandableTextLayout extends LinearLayout implements View.OnClickLi
 
     setOrientation(VERTICAL);
 
-    expandTv = null;
     expandTarget = null;
     expanded = false;
   }
@@ -42,26 +40,17 @@ public class ExpandableTextLayout extends LinearLayout implements View.OnClickLi
 
     setOrientation(VERTICAL);
 
-    expandTv = null;
     expandTarget = null;
     expanded = false;
   }
 
-  public void initExpandText(String expandText, int expandTextColor, float textSize,
+  public void initExpandText(TextView expandView,
       AdvancedTextView atv) {
-    float density = getContext().getResources().getDisplayMetrics().density;
 
-    expandTv = (TextView) LayoutInflater.from(getContext())
-        .inflate(R.layout.layout_expand_text, this, false);
+    expandView.setClickable(true);
+    expandView.setOnClickListener(this);
 
-    expandTv.setText(expandText);
-    expandTv.setTextColor(expandTextColor);
-    expandTv.setTextSize(textSize);
-    expandTv.setPadding(0, (int) ((float) atv.getLineHeight() / density)-1, 0, 0);
-    expandTv.setClickable(true);
-    expandTv.setOnClickListener(this);
-
-    addView(expandTv);
+    addView(expandView);
 
     this.expandTarget = atv;
   }
@@ -73,7 +62,7 @@ public class ExpandableTextLayout extends LinearLayout implements View.OnClickLi
 
       expanded = true;
 
-      expandTv.setVisibility(GONE);
+      this.removeViewAt(1);
     }
   }
 }
