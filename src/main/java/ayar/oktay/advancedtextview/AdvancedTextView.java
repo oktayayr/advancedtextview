@@ -20,16 +20,34 @@ public class AdvancedTextView extends TextView {
   private static final String DEFAULT_EXPAND_TEXT_COLOR = "#C5C5C5";
   private final float DEF_MIN_TEXT_SIZE =
       6 * getContext().getResources().getDisplayMetrics().density;
+  private final float DEF_EXPAND_TEXT_SIZE =
+      12 * getContext().getResources().getDisplayMetrics().density;
 
+  // Attributes for text justification
   private boolean justifyText;
-  private String fontFile;
+
+  // Attributes for expandable layout
   private boolean expandable;
   private String expandText;
   private int expandTextColor;
+  private int expandTextSize;
+  private int expandTextPosition;
+  private int expandText_margin;
+  private int expandText_marginLeft;
+  private int expandText_marginRight;
+  private int expandText_marginTop;
+  private int expandText_marginBottom;
+  private boolean expandEllipsize;
+
+  // Attributes for auto-fit
   private boolean autoFit;
   private int minTextSize;
-  private Font font;
 
+  // Attributes for custom fonts
+  private Font font;
+  private String fontFile;
+
+  // Local properties
   private String text;
 
   private boolean expandTextShown;
@@ -185,11 +203,34 @@ public class AdvancedTextView extends TextView {
     TypedArray arr = getContext().getTheme()
         .obtainStyledAttributes(attrs, R.styleable.AdvancedTextView, defStyleAttr, defStyleRes);
 
+    // Obtain text justification attributes
     this.justifyText = arr.getBoolean(R.styleable.AdvancedTextView_justifyText, false);
+
+    // Obtain expandable layout attributes
     this.expandable = arr.getBoolean(R.styleable.AdvancedTextView_expandable, false);
     this.expandText = arr.getString(R.styleable.AdvancedTextView_expandText);
     this.expandTextColor = arr.getColor(R.styleable.AdvancedTextView_expandTextColor,
         Color.parseColor(DEFAULT_EXPAND_TEXT_COLOR));
+    this.expandTextSize = arr.getDimensionPixelSize(R.styleable.AdvancedTextView_expandTextSize,
+        (int) DEF_EXPAND_TEXT_SIZE);
+    this.expandTextPosition = arr.getInt(R.styleable.AdvancedTextView_expandTextPosition, 0);
+    this.expandEllipsize = arr.getBoolean(R.styleable.AdvancedTextView_expandEllipsize, true);
+    this.expandText_margin =
+        arr.getDimensionPixelSize(R.styleable.AdvancedTextView_expandText_margin, -1);
+    this.expandText_marginLeft =
+        arr.getDimensionPixelSize(R.styleable.AdvancedTextView_expandText_marginLeft,
+            expandText_margin);
+    this.expandText_marginRight =
+        arr.getDimensionPixelSize(R.styleable.AdvancedTextView_expandText_marginRight,
+            expandText_margin);
+    this.expandText_marginTop =
+        arr.getDimensionPixelSize(R.styleable.AdvancedTextView_expandText_marginTop,
+            expandText_margin);
+    this.expandText_marginBottom =
+        arr.getDimensionPixelSize(R.styleable.AdvancedTextView_expandText_marginBottom,
+            expandText_margin);
+
+    // Obtain autoFit attributes
     this.autoFit = arr.getBoolean(R.styleable.AdvancedTextView_autoFit, false);
     this.minTextSize = arr.getDimensionPixelSize(R.styleable.AdvancedTextView_minTextSize,
         (int) DEF_MIN_TEXT_SIZE);
@@ -201,6 +242,9 @@ public class AdvancedTextView extends TextView {
     } else {
       this.fontFile = arr.getString(R.styleable.AdvancedTextView_fontFile);
     }
+
+    // recycle array
+    arr.recycle();
   }
 
   private void init() {
