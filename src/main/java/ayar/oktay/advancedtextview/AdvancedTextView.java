@@ -195,8 +195,8 @@ public class AdvancedTextView extends TextView {
         (int) DEF_MIN_TEXT_SIZE);
 
     // Obtain font file
-    int font = arr.getInt(R.styleable.AdvancedTextView_font, 0);
-    if (font > 0 && Font.parse(font) != null) {
+    int font = arr.getInt(R.styleable.AdvancedTextView_font, -1);
+    if (font >= 0 && Font.parse(font) != null) {
       this.fontFile = Font.parse(font).getFileName();
     } else {
       this.fontFile = arr.getString(R.styleable.AdvancedTextView_fontFile);
