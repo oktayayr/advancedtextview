@@ -10,7 +10,12 @@ import android.os.Build;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
@@ -20,8 +25,6 @@ public class AdvancedTextView extends TextView {
   private static final String DEFAULT_EXPAND_TEXT_COLOR = "#C5C5C5";
   private final float DEF_MIN_TEXT_SIZE =
       6 * getContext().getResources().getDisplayMetrics().density;
-  private final float DEF_EXPAND_TEXT_SIZE =
-      12 * getContext().getResources().getDisplayMetrics().density;
 
   // Attributes for text justification
   private boolean justifyText;
@@ -32,7 +35,6 @@ public class AdvancedTextView extends TextView {
   private int expandTextColor;
   private int expandTextSize;
   private int expandTextPosition;
-  private int expandText_margin;
   private int expandText_marginLeft;
   private int expandText_marginRight;
   private int expandText_marginTop;
@@ -212,11 +214,12 @@ public class AdvancedTextView extends TextView {
     this.expandTextColor = arr.getColor(R.styleable.AdvancedTextView_expandTextColor,
         Color.parseColor(DEFAULT_EXPAND_TEXT_COLOR));
     this.expandTextSize = arr.getDimensionPixelSize(R.styleable.AdvancedTextView_expandTextSize,
-        (int) DEF_EXPAND_TEXT_SIZE);
+        (int) this.getTextSize());
     this.expandTextPosition = arr.getInt(R.styleable.AdvancedTextView_expandTextPosition, 0);
     this.expandEllipsize = arr.getBoolean(R.styleable.AdvancedTextView_expandEllipsize, true);
-    this.expandText_margin =
-        arr.getDimensionPixelSize(R.styleable.AdvancedTextView_expandText_margin, -1);
+
+    int expandText_margin =
+        arr.getDimensionPixelSize(R.styleable.AdvancedTextView_expandText_margin, 0);
     this.expandText_marginLeft =
         arr.getDimensionPixelSize(R.styleable.AdvancedTextView_expandText_marginLeft,
             expandText_margin);
@@ -335,9 +338,36 @@ public class AdvancedTextView extends TextView {
     }
 
     ExpandableTextLayout expandableTextLayout = (ExpandableTextLayout) getParent();
+    TextView expandView = (TextView) LayoutInflater.from(getContext())
+        .inflate(R.layout.layout_expand_text, expandableTextLayout, false);
 
-    float density = getContext().getResources().getDisplayMetrics().density;
-    expandableTextLayout.initExpandText(expandText, expandTextColor, getTextSize() / density, this);
+    // Initialize expand view
+    expandView.setText(this.expandText);
+    expandView.setTextSize(TypedValue.COMPLEX_UNIT_PX, this.expandTextSize);
+    expandView.setTextColor(this.expandTextColor);
+
+    ViewGroup.MarginLayoutParams params =
+        (ViewGroup.MarginLayoutParams) expandView.getLayoutParams();
+
+    params.leftMargin = this.expandText_marginLeft;
+    params.rightMargin = this.expandText_marginRight;
+    params.topMargin = this.expandText_marginTop;
+    params.bottomMargin = this.expandText_marginBottom;
+
+    if (this.expandTextPosition == 0) {
+      expandView.setGravity(Gravity.LEFT);
+    } else if (this.expandTextPosition == 1) {
+      expandView.setGravity(Gravity.CENTER_HORIZONTAL);
+    } else if (this.expandTextPosition == 2) {
+      expandView.setGravity(Gravity.RIGHT);
+    }
+
+    if (this.expandEllipsize) {
+      this.setEllipsize(TextUtils.TruncateAt.END);
+    }
+
+    expandableTextLayout.initExpandText(expandView, this);
+
   }
 
   private void drawAutoFitText(Canvas canvas) {
