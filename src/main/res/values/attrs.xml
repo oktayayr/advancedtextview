@@ -40,6 +40,20 @@
     <attr format="boolean" name="expandable"/>
     <attr format="string" name="expandText"/>
     <attr format="color" name="expandTextColor"/>
+    <attr format="enum" name="expandTextPosition">
+      <enum name="left" value="0"/>
+      <enum name="center" value="1"/>
+      <enum name="right" value="2"/>
+    </attr>
+
+    <attr format="dimension" name="expandTextSize"/>
+    <attr format="dimension" name="expandText_margin"/>
+    <attr format="dimension" name="expandText_marginLeft"/>
+    <attr format="dimension" name="expandText_marginRight"/>
+    <attr format="dimension" name="expandText_marginTop"/>
+    <attr format="dimension" name="expandText_marginBottom"/>
+    <attr format="boolean" name="expandEllipsize"/>
+
     <attr format="boolean" name="autoFit"/>
     <attr format="dimension" name="minTextSize"/>
   </declare-styleable>
