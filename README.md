@@ -12,6 +12,23 @@ There are 4 main feaures (for now):
 
 **Note: This features works with only plain text. You cannot use AdvancedTextView with Spanned Text (for now)**
 
+###Upcoming Features
+
+* Counting Text
+
+**Feature recommendations are pleasedly welcomed**
+
+## Version Notes
+
+####0.3.0
+Features/Attributes below have been added to Expanding Text Layout
+
+* expandTextPosition
+* expandTextSize
+* expandText_margin (left, right, top, bottom)
+* expandEllipsize
+
+
 ##Installation
 
 ###Maven
@@ -19,16 +36,16 @@ There are 4 main feaures (for now):
     <dependency>
 		<groupId>ayar.oktay.library</groupId>
 		<artifactId>advancedtextview</artifactId>
-		<version>0.2.8</version>
+		<version>0.3.0</version>
 		<type>pom</type>
 	</dependency>
 
 ###Gradle
 
-    compile 'ayar.oktay.library:advancedtextview:0.2.8'
+    compile 'ayar.oktay.library:advancedtextview:0.3.0'
 ###Ivy
 
-    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.2.8'>
+    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.3.0'>
 	  <artifact name='$AID' ext='pom'></artifact>
 	</dependency>
 
@@ -101,28 +118,28 @@ You can also load .ttf file from assets folder by declaring in your xml file.
 ###Expandable Text Layout
 
 AdvancedTextView provides expandable layout for long texts. You can use this feature with **ExpandableTextLayout**.
- `expandable`, `android:maxLines` and `expandText` must be set for expandable feature. You can also set expand text color with `expandTextColor` (Default is #C5C5C5)
+ `expandable`, `android:maxLines` and `expandText` must be set for expandable feature.
 
 <img src="/arts/expandtext_ss1.png" width="35%" height="35%" />
 
 
 <img src="/arts/expandtext_ss2.png" width="35%" height="35%" />
 
-    <ayar.oktay.advancedtextview.ExpandableTextLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-      <ayar.oktay.advancedtextview.AdvancedTextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:maxLines="3"
-          android:text="@string/very_long_text"
-          app:expandText="Read more"
-          app:expandable="true"
-          />
-    </ayar.oktay.advancedtextview.ExpandableTextLayout>
+####Attributes
 
-**Only text can be used as expand widget. Other expand widget such as Button, ImageButton will be added soon.**
+* expandable (boolean): Enables/Disables expandable feature
+* expandText (String): Text which is shown for expanding layout
+* expandTextColor (coloe): expandText color (Default is #C5C5C5)
+* expandTextPosition (enum): Determines alignment option of expandText according to its expanding text. left, center or right is accepted for this attribute
+* expandTextSize (dimension): Determines size of expandText. Default is same dimension with expanding text
+* expandEllipsize (boolean): Enables/Disables ellipsize at the end of the expanding text (default is true)
+* expandText_margin (dimension): Determines margin according to expanding text of expandText for 4 sides (right, left, top and bottom)
+* expandText_marginLeft (dimension): Determines left margin according to expanding text of expandText
+* expandText_marginRight (dimension): Determines right margin according to expanding text of expandText
+* expandText_marginTop (dimension): Determines top margin according to expanding text of expandText
+* expandText_marginBottom (dimension): Determines bottom margin according to expanding text of expandText
+
+**Only text can be used as expand widget. Other expand widgets such as Button, ImageButton will be added soon.**
 
 **You cannot use this feature without using AdvancedTexview as child of ExpandableTextLayout.**
 
