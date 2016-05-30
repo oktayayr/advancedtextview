@@ -5,10 +5,10 @@ AdvancedTextView provides advanced features that simplifies complicated UI proce
 
 There are 4 main feaures (for now):
 
-* Justified Text Alignment
-* Custom Fonts
-* Expandable Text Layout
-* AutoFit Text
+* [Justified Text Alignment](https://github.com/oktayayr/advancedtextview/blob/master/README.md#justified-text-alignment)
+* [Custom Fonts](https://github.com/oktayayr/advancedtextview#custom-fonts)
+* [Expandable Text Layout](https://github.com/oktayayr/advancedtextview#expandable-text-layout)
+* [AutoFit Text](https://github.com/oktayayr/advancedtextview#autofit-text)
 
 **Note: This features works with only plain text. You cannot use AdvancedTextView with Spanned Text (for now)**
 
