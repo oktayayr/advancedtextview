@@ -65,13 +65,13 @@
 
     <!-- Attributes for counting text-->
     <attr format="boolean" name="countingText"/>
-    <attr format="integer" name="startValue"/>
-    <attr format="integer" name="endValue"/>
-    <attr format="integer" name="interval"/>
-    <attr format="enum" name="format">
+    <attr format="integer" name="countingText_startValue"/>
+    <attr format="integer" name="countingText_endValue"/>
+    <attr format="integer" name="countingText_interval"/>
+    <attr format="integer" name="countingText_increment"/>
+    <attr format="enum" name="countingText_format">
       <enum name="none" value="0"/>
       <enum name="comma" value="1"/>
-      <enum name="dot" value="2"/>
     </attr>
   </declare-styleable>
 </resources>
