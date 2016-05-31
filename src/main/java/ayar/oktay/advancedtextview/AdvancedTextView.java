@@ -23,6 +23,7 @@ import android.widget.TextView;
  */
 public class AdvancedTextView extends TextView {
   private static final String DEFAULT_EXPAND_TEXT_COLOR = "#C5C5C5";
+  private static final int DEFAULT_COUNTING_INTERVAL = 3000;
   private final float DEF_MIN_TEXT_SIZE =
       6 * getContext().getResources().getDisplayMetrics().density;
 
@@ -48,6 +49,13 @@ public class AdvancedTextView extends TextView {
   // Attributes for custom fonts
   private Font font;
   private String fontFile;
+
+  // Attributes for counting text
+  private boolean countingText;
+  private long startValue;
+  private long endValue;
+  private long interval;
+  private int countingTextFormat;
 
   // Local properties
   private String text;
@@ -270,11 +278,22 @@ public class AdvancedTextView extends TextView {
       this.fontFile = arr.getString(R.styleable.AdvancedTextView_fontFile);
     }
 
+    // Obtain counting text attributes
+    this.countingText = arr.getBoolean(R.styleable.AdvancedTextView_countingText, false);
+    this.startValue = arr.getInt(R.styleable.AdvancedTextView_startValue, 0);
+    this.endValue = arr.getInt(R.styleable.AdvancedTextView_endValue, -1);
+    this.interval = arr.getInt(R.styleable.AdvancedTextView_interval, DEFAULT_COUNTING_INTERVAL);
+    this.countingTextFormat = arr.getInt(R.styleable.AdvancedTextView_format, 0);
+
     // recycle array
     arr.recycle();
   }
 
   private void init() {
+    if (countingText && (justifyText || autoFit || expandable)) {
+      throw new IllegalStateException("Counting text feature can be used only standalone!!");
+    }
+
     if (this.fontFile != null && fontFile.length() > 0) {
       // Load font
       loadFont(this.fontFile);
