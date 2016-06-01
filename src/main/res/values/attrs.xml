@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <declare-styleable name="AdvancedTextView">
+    <!-- Attributes for justified text alignment-->
     <attr format="boolean" name="justifyText"/>
+
+    <!-- Attributes for custom font-->
     <attr format="enum" name="font">
       <enum name="aller_bold" value="0"/>
       <enum name="aller_bold_italic" value="1"/>
@@ -37,6 +40,8 @@
       <enum name="roboto_medium_italic" value="32"/>
     </attr>
     <attr format="string" name="fontFile"/>
+
+    <!-- Attributes for expandable text layout-->
     <attr format="boolean" name="expandable"/>
     <attr format="string" name="expandText"/>
     <attr format="color" name="expandTextColor"/>
@@ -54,7 +59,19 @@
     <attr format="dimension" name="expandText_marginBottom"/>
     <attr format="boolean" name="expandEllipsize"/>
 
+    <!-- Attributes for auto fit-->
     <attr format="boolean" name="autoFit"/>
     <attr format="dimension" name="minTextSize"/>
+
+    <!-- Attributes for counting text-->
+    <attr format="boolean" name="countingText"/>
+    <attr format="integer" name="countingText_startValue"/>
+    <attr format="integer" name="countingText_endValue"/>
+    <attr format="integer" name="countingText_interval"/>
+    <attr format="integer" name="countingText_increment"/>
+    <attr format="enum" name="countingText_format">
+      <enum name="none" value="0"/>
+      <enum name="comma" value="1"/>
+    </attr>
   </declare-styleable>
 </resources>
