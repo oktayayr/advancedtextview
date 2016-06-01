@@ -4,7 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,13 +44,42 @@ public class ExpandableTextLayout extends LinearLayout implements View.OnClickLi
     expanded = false;
   }
 
-  public void initExpandText(TextView expandView,
-      AdvancedTextView atv) {
+  public TextView getExpandView() {
+    return (TextView) getChildAt(1);
+  }
 
+  public void hideExpandView() {
+    getChildAt(1).setVisibility(GONE);
+  }
+
+  public void initExpandText(TextView expandView, AdvancedTextView atv) {
     expandView.setClickable(true);
     expandView.setOnClickListener(this);
 
-    addView(expandView);
+    if (getChildAt(1) == null) {
+      addView(expandView);
+    } else {
+      TextView orgExpandView = getExpandView();
+
+      orgExpandView.setText(expandView.getText());
+      orgExpandView.setTextSize(TypedValue.COMPLEX_UNIT_PX, expandView.getTextSize());
+      orgExpandView.setTextColor(expandView.getCurrentTextColor());
+
+      MarginLayoutParams layoutParams = (MarginLayoutParams) expandView.getLayoutParams();
+      MarginLayoutParams orgLayoutParams = (MarginLayoutParams) orgExpandView.getLayoutParams();
+
+      orgLayoutParams.leftMargin = layoutParams.leftMargin;
+      orgLayoutParams.rightMargin = layoutParams.rightMargin;
+      orgLayoutParams.topMargin = layoutParams.topMargin;
+      orgLayoutParams.bottomMargin = layoutParams.bottomMargin;
+
+      orgExpandView.setGravity(expandView.getGravity());
+      orgExpandView.setEllipsize(expandView.getEllipsize());
+
+      orgExpandView.setVisibility(VISIBLE);
+      orgExpandView.requestLayout();
+
+    }
 
     this.expandTarget = atv;
   }
@@ -62,7 +91,7 @@ public class ExpandableTextLayout extends LinearLayout implements View.OnClickLi
 
       expanded = true;
 
-      this.removeViewAt(1);
+      getExpandView().setVisibility(GONE);
     }
   }
 }
