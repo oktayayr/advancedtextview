@@ -288,6 +288,10 @@ public class AdvancedTextView extends TextView {
   }
 
   private void drawJustified(Canvas canvas) {
+    if (this.getLayout() == null) {
+      return;
+    }
+
     drawJustified(canvas, this.getLayout());
   }
 
@@ -391,7 +395,6 @@ public class AdvancedTextView extends TextView {
     }
 
     expandableTextLayout.initExpandText(expandView, this);
-
   }
 
   private void drawAutoFitText(Canvas canvas) {
