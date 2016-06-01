@@ -186,7 +186,7 @@ public class AdvancedTextView extends TextView {
   }
 
   @Override protected void onDraw(Canvas canvas) {
-    if (expandable && !expandTextShown) {
+    if (expandable /*&& !expandTextShown*/) {
       initExpandable(this.expandText, this.expandTextColor);
 
       expandTextShown = true;
@@ -198,7 +198,7 @@ public class AdvancedTextView extends TextView {
       float autoFitTextSize =
           getAutoFitTextSize(this.text, this.getMeasuredWidth(), this.getMaxLines(),
               this.minTextSize);
-      Layout autoFitLayout = createAutoFitLayout(this.getLayout(), this.getPaint(), autoFitTextSize,
+      Layout autoFitLayout = createLayout(this.getLayout(), this.getPaint(), autoFitTextSize,
           this.getLineSpacingMultiplier(), this.getLineSpacingExtra());
 
       if (!heightSet) {
@@ -288,6 +288,10 @@ public class AdvancedTextView extends TextView {
   }
 
   private void drawJustified(Canvas canvas) {
+    if (this.getLayout() == null) {
+      return;
+    }
+
     drawJustified(canvas, this.getLayout());
   }
 
@@ -362,6 +366,16 @@ public class AdvancedTextView extends TextView {
     }
 
     ExpandableTextLayout expandableTextLayout = (ExpandableTextLayout) getParent();
+
+    if (this.getMaxLines() >= createLayout(this.getLayout(), this.getPaint(), this.getTextSize(),
+        this.getLineSpacingMultiplier(), this.getLineSpacingExtra()).getLineCount()) {
+      if (expandableTextLayout.getExpandView() != null) {
+        expandableTextLayout.hideExpandView();
+      }
+
+      return;
+    }
+
     TextView expandView = (TextView) LayoutInflater.from(getContext())
         .inflate(R.layout.layout_expand_text, expandableTextLayout, false);
 
@@ -391,14 +405,13 @@ public class AdvancedTextView extends TextView {
     }
 
     expandableTextLayout.initExpandText(expandView, this);
-
   }
 
   private void drawAutoFitText(Canvas canvas) {
     float autoFitTextSize =
         getAutoFitTextSize(this.text, this.getMeasuredWidth(), this.getMaxLines(),
             this.minTextSize);
-    Layout autoFitLayout = createAutoFitLayout(this.getLayout(), this.getPaint(), autoFitTextSize,
+    Layout autoFitLayout = createLayout(this.getLayout(), this.getPaint(), autoFitTextSize,
         this.getLineSpacingMultiplier(), this.getLineSpacingExtra());
 
     if (!heightSet) {
@@ -448,7 +461,7 @@ public class AdvancedTextView extends TextView {
 
       paint.setTextSize(textSize);
 
-      lineCount = createAutoFitLayout(layout, paint, textSize, this.getLineSpacingMultiplier(),
+      lineCount = createLayout(layout, paint, textSize, this.getLineSpacingMultiplier(),
           this.getLineSpacingExtra()).getLineCount();
     }
 
@@ -459,7 +472,7 @@ public class AdvancedTextView extends TextView {
     return textSize;
   }
 
-  private StaticLayout createAutoFitLayout(Layout currentLayout, TextPaint paint,
+  private StaticLayout createLayout(Layout currentLayout, TextPaint paint,
       float autoFitTextSize, float spacingmult, float spacingadd) {
 
     paint.setTextSize(autoFitTextSize);
@@ -472,7 +485,7 @@ public class AdvancedTextView extends TextView {
     float autoFitTextSize =
         getAutoFitTextSize(this.text, this.getMeasuredWidth(), this.getMaxLines(),
             this.minTextSize);
-    Layout autoFitLayout = createAutoFitLayout(this.getLayout(), this.getPaint(), autoFitTextSize,
+    Layout autoFitLayout = createLayout(this.getLayout(), this.getPaint(), autoFitTextSize,
         this.getLineSpacingMultiplier(), this.getLineSpacingExtra());
 
     return autoFitLayout.getHeight() + this.getPaddingBottom() + this.getPaddingTop();
