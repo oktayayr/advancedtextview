@@ -20,6 +20,9 @@ There are 4 main feaures (for now):
 
 ## Version Notes
 
+####0.3.5
+* Detected bugs have been fixed
+
 ####0.3.0
 Features/Attributes below have been added to Expanding Text Layout
 
@@ -36,16 +39,16 @@ Features/Attributes below have been added to Expanding Text Layout
     <dependency>
 		<groupId>ayar.oktay.library</groupId>
 		<artifactId>advancedtextview</artifactId>
-		<version>0.3.0</version>
+		<version>0.3.5</version>
 		<type>pom</type>
 	</dependency>
 
 ###Gradle
 
-    compile 'ayar.oktay.library:advancedtextview:0.3.0'
+    compile 'ayar.oktay.library:advancedtextview:0.3.5'
 ###Ivy
 
-    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.3.0'>
+    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.3.5'>
 	  <artifact name='$AID' ext='pom'></artifact>
 	</dependency>
 
