@@ -69,6 +69,7 @@ public class AdvancedTextView extends TextView {
   private long countingChangeInterval;
   private long currentCount;
   private boolean countingEnded;
+  private String zeroFormat;
 
   public AdvancedTextView(Context context) {
     super(context);
@@ -555,13 +556,40 @@ public class AdvancedTextView extends TextView {
     } else if (this.countingTextFormat == 1) {
       nextText = new DecimalFormat("###,###").format(currentCount);
     } else if (this.countingTextFormat == 2) {
-      nextText = new DecimalFormat("000,000").format(currentCount);
+      if (zeroFormat == null) {
+        zeroFormat = getWithZerosFormat(this.endValue);
+      }
+
+      nextText = new DecimalFormat(zeroFormat).format(currentCount);
     } else if (this.countingTextFormat == 3) {
       nextText = new DecimalFormat("###,###").format(currentCount).replace(',', '.');
     } else {
-      nextText = new DecimalFormat("000,000").format(currentCount).replace(',', '.');
+      if (zeroFormat == null) {
+        zeroFormat = getWithZerosFormat(this.endValue);
+      }
+
+      nextText = new DecimalFormat(zeroFormat).format(currentCount).replace(',', '.');
     }
 
     return nextText;
+  }
+
+  private String getWithZerosFormat(long count) {
+    String formatText = "";
+    int digitCount = getDigitCount(count);
+
+    for (int i = 0; i < digitCount; i++) {
+      formatText = "0" + formatText;
+
+      if ((i - 2) % 3 == 0) {
+        formatText = "," + formatText;
+      }
+    }
+
+    return formatText;
+  }
+
+  private int getDigitCount(long currentCount) {
+    return (int) Math.log10(currentCount) + 1;
   }
 }
