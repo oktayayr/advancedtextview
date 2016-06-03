@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.os.Handler;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -17,12 +18,15 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import java.text.DecimalFormat;
 
 /**
  * Created by Oktay AYAR on 5/20/16.
  */
 public class AdvancedTextView extends TextView {
   private static final String DEFAULT_EXPAND_TEXT_COLOR = "#C5C5C5";
+  private static final int DEFAULT_COUNTING_INTERVAL = 3000;
+  private static final int DEFAULT_COUNTING_INCREMENT = 10;
   private final float DEF_MIN_TEXT_SIZE =
       6 * getContext().getResources().getDisplayMetrics().density;
 
@@ -49,11 +53,23 @@ public class AdvancedTextView extends TextView {
   private Font font;
   private String fontFile;
 
+  // Attributes for counting text
+  private boolean countingText;
+  private long startValue;
+  private long endValue;
+  private long interval;
+  private int countingTextFormat;
+  private int countingTextIncrement;
+
   // Local properties
   private String text;
 
   private boolean expandTextShown;
   private boolean heightSet;
+  private long countingChangeInterval;
+  private long currentCount;
+  private boolean countingEnded;
+  private String zeroFormat;
 
   public AdvancedTextView(Context context) {
     super(context);
@@ -217,6 +233,10 @@ public class AdvancedTextView extends TextView {
     } else {
       drawJustified(canvas);
     }
+
+    if (this.countingText && !this.countingEnded) {
+      countText();
+    }
   }
 
   @Override protected void onFinishInflate() {
@@ -270,11 +290,41 @@ public class AdvancedTextView extends TextView {
       this.fontFile = arr.getString(R.styleable.AdvancedTextView_fontFile);
     }
 
+    // Obtain counting text attributes
+    this.countingText = arr.getBoolean(R.styleable.AdvancedTextView_countingText, false);
+    this.startValue = arr.getInt(R.styleable.AdvancedTextView_countingText_startValue, 0);
+    this.endValue = arr.getInt(R.styleable.AdvancedTextView_countingText_endValue, -1);
+    this.interval =
+        arr.getInt(R.styleable.AdvancedTextView_countingText_interval, DEFAULT_COUNTING_INTERVAL);
+    this.countingTextIncrement =
+        arr.getInt(R.styleable.AdvancedTextView_countingText_increment, DEFAULT_COUNTING_INCREMENT);
+    this.countingTextFormat = arr.getInt(R.styleable.AdvancedTextView_countingText_format, 0);
+
     // recycle array
     arr.recycle();
   }
 
   private void init() {
+    if (countingText && (justifyText || autoFit || expandable)) {
+      throw new IllegalStateException("Counting text feature can be used only standalone!!");
+    }
+
+    if (countingText) {
+
+      if (this.endValue <= this.startValue) {
+        throw new IllegalArgumentException(
+            "End value of counting text must be greater than start value!!");
+      }
+
+      this.countingChangeInterval =
+          (long) ((float) this.interval / ((double) (this.endValue - this.startValue) / Math.abs(
+              this.countingTextIncrement)));
+
+      this.currentCount = this.startValue;
+
+      setText(getCountingText(this.startValue));
+    }
+
     if (this.fontFile != null && fontFile.length() > 0) {
       // Load font
       loadFont(this.fontFile);
@@ -472,8 +522,8 @@ public class AdvancedTextView extends TextView {
     return textSize;
   }
 
-  private StaticLayout createLayout(Layout currentLayout, TextPaint paint,
-      float autoFitTextSize, float spacingmult, float spacingadd) {
+  private StaticLayout createLayout(Layout currentLayout, TextPaint paint, float autoFitTextSize,
+      float spacingmult, float spacingadd) {
 
     paint.setTextSize(autoFitTextSize);
 
@@ -481,13 +531,65 @@ public class AdvancedTextView extends TextView {
         currentLayout.getAlignment(), spacingmult, spacingadd, false);
   }
 
-  private int computeHeight() {
-    float autoFitTextSize =
-        getAutoFitTextSize(this.text, this.getMeasuredWidth(), this.getMaxLines(),
-            this.minTextSize);
-    Layout autoFitLayout = createLayout(this.getLayout(), this.getPaint(), autoFitTextSize,
-        this.getLineSpacingMultiplier(), this.getLineSpacingExtra());
+  private void countText() {
+    if (this.currentCount > this.endValue) {
+      this.currentCount = this.endValue;
 
-    return autoFitLayout.getHeight() + this.getPaddingBottom() + this.getPaddingTop();
+      this.countingEnded = true;
+    }
+
+    final String nextText = getCountingText(this.currentCount);
+
+    new Handler().postDelayed(new Runnable() {
+      @Override public void run() {
+        AdvancedTextView.this.setText(nextText);
+        AdvancedTextView.this.currentCount += AdvancedTextView.this.countingTextIncrement;
+      }
+    }, this.countingChangeInterval);
+  }
+
+  private String getCountingText(long currentCount) {
+    String nextText;
+
+    if (this.countingTextFormat == 0) {
+      nextText = "" + currentCount;
+    } else if (this.countingTextFormat == 1) {
+      nextText = new DecimalFormat("###,###").format(currentCount);
+    } else if (this.countingTextFormat == 2) {
+      if (zeroFormat == null) {
+        zeroFormat = getWithZerosFormat(this.endValue);
+      }
+
+      nextText = new DecimalFormat(zeroFormat).format(currentCount);
+    } else if (this.countingTextFormat == 3) {
+      nextText = new DecimalFormat("###,###").format(currentCount).replace(',', '.');
+    } else {
+      if (zeroFormat == null) {
+        zeroFormat = getWithZerosFormat(this.endValue);
+      }
+
+      nextText = new DecimalFormat(zeroFormat).format(currentCount).replace(',', '.');
+    }
+
+    return nextText;
+  }
+
+  private String getWithZerosFormat(long count) {
+    String formatText = "";
+    int digitCount = getDigitCount(count);
+
+    for (int i = 0; i < digitCount; i++) {
+      formatText = "0" + formatText;
+
+      if ((i - 2) % 3 == 0) {
+        formatText = "," + formatText;
+      }
+    }
+
+    return formatText;
+  }
+
+  private int getDigitCount(long currentCount) {
+    return (int) Math.log10(currentCount) + 1;
   }
 }
