@@ -521,8 +521,8 @@ public class AdvancedTextView extends TextView {
     return textSize;
   }
 
-  private StaticLayout createLayout(Layout currentLayout, TextPaint paint,
-      float autoFitTextSize, float spacingmult, float spacingadd) {
+  private StaticLayout createLayout(Layout currentLayout, TextPaint paint, float autoFitTextSize,
+      float spacingmult, float spacingadd) {
 
     paint.setTextSize(autoFitTextSize);
 
@@ -534,7 +534,7 @@ public class AdvancedTextView extends TextView {
     if (this.currentCount > this.endValue) {
       this.currentCount = this.endValue;
 
-      this.countingEnded=true;
+      this.countingEnded = true;
     }
 
     final String nextText = getCountingText(this.currentCount);
@@ -554,8 +554,12 @@ public class AdvancedTextView extends TextView {
       nextText = "" + currentCount;
     } else if (this.countingTextFormat == 1) {
       nextText = new DecimalFormat("###,###").format(currentCount);
-    } else {
+    } else if (this.countingTextFormat == 2) {
       nextText = new DecimalFormat("000,000").format(currentCount);
+    } else if (this.countingTextFormat == 3) {
+      nextText = new DecimalFormat("###,###").format(currentCount).replace(',', '.');
+    } else {
+      nextText = new DecimalFormat("000,000").format(currentCount).replace(',', '.');
     }
 
     return nextText;

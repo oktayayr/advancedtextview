@@ -73,6 +73,8 @@
       <enum name="none" value="0"/>
       <enum name="comma" value="1"/>
       <enum name="commaWithZeros" value="2"/>
+      <enum name="dot" value="3"/>
+      <enum name="dotWithZeros" value="4"/>
     </attr>
   </declare-styleable>
 </resources>
