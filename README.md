@@ -3,7 +3,7 @@
 
 AdvancedTextView provides advanced features that simplifies complicated UI processes.
 
-There are 4 main feaures (for now):
+There are 5 main feaures (for now):
 
 * [Justified Text Alignment](#justified-text-alignment)
 * [Custom Fonts](#custom-fonts)
