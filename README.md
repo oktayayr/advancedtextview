@@ -9,16 +9,16 @@ There are 4 main feaures (for now):
 * [Custom Fonts](#custom-fonts)
 * [Expandable Text Layout](#expandable-text-layout)
 * [AutoFit Text](#autofit-text)
+* [Counting Text](#counting-text)
+
+**Feature recommendations/requests are pleasedly welcomed**
 
 **Note: This features works with only plain text. You cannot use AdvancedTextView with Spanned Text (for now)**
 
-###Upcoming Features
-
-* Counting Text
-
-**Feature recommendations are pleasedly welcomed**
-
 ## Version Notes
+
+####0.4.0
+* Counting text feature has been added
 
 ####0.3.5
 * Detected bugs have been fixed
@@ -39,16 +39,16 @@ Features/Attributes below have been added to Expanding Text Layout
     <dependency>
 		<groupId>ayar.oktay.library</groupId>
 		<artifactId>advancedtextview</artifactId>
-		<version>0.3.5</version>
+		<version>0.4.0</version>
 		<type>pom</type>
 	</dependency>
 
 ###Gradle
 
-    compile 'ayar.oktay.library:advancedtextview:0.3.5'
+    compile 'ayar.oktay.library:advancedtextview:0.4.0'
 ###Ivy
 
-    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.3.5'>
+    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.4.0'>
 	  <artifact name='$AID' ext='pom'></artifact>
 	</dependency>
 
@@ -161,6 +161,21 @@ You can fit your your texts into determined lines. You must set `autoFit` and `a
         app:autoFit="true"
         app:minTextSize="10dp"
         />
+###Counting Text
+You can demonstrate counting process from start value to end value. 
+
+<img src="/arts/counting_text_demo.gif" width="25%" height="25%" />
+
+####Attributes
+
+* coutingText (boolean): Enables/Disables counting text feature
+* coutingText_startValue (integer): Determines start value of counting text (Default value is 0)
+* coutingText_endValue (integer): Determines start value of counting text, **Must be assigned**
+* coutingText_increment (integer): Determines increment value of every counting step (Default value is 10)
+* coutingText_format (enum): Determines number format of text. It has 5 options, these options are **none**, **comma**, **commaWithZero**, **dot**, **dotWithZero**. You can see examples from demo above.
+ 
+**Note: You cannot use counting text feature with Justified Text Alignment, Expandable Text Layout or AutoFit Text**
+
 
 ##Usage with Styles
 
