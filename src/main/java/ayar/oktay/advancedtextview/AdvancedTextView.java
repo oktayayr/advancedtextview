@@ -552,9 +552,12 @@ public class AdvancedTextView extends TextView {
 
     if (this.countingTextFormat == 0) {
       nextText = "" + currentCount;
+    } else if (this.countingTextFormat == 1) {
+      nextText = new DecimalFormat("###,###").format(currentCount);
     } else {
-      nextText = new DecimalFormat("#,###").format(currentCount);
+      nextText = new DecimalFormat("000,000").format(currentCount);
     }
+
     return nextText;
   }
 }
