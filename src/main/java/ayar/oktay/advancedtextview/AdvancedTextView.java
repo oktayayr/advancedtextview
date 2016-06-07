@@ -415,6 +415,10 @@ public class AdvancedTextView extends TextView {
       return;
     }
 
+    if(this.getLayout()==null) {
+      return;
+    }
+
     ExpandableTextLayout expandableTextLayout = (ExpandableTextLayout) getParent();
 
     if (this.getMaxLines() >= createLayout(this.getLayout(), this.getPaint(), this.getTextSize(),
