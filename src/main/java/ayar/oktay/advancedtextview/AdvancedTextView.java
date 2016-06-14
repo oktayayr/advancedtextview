@@ -44,6 +44,7 @@ public class AdvancedTextView extends TextView {
   private int expandText_marginTop;
   private int expandText_marginBottom;
   private boolean expandEllipsize;
+  private OnClickListener expandTextOnClickListener;
 
   // Attributes for auto-fit
   private boolean autoFit;
@@ -193,6 +194,10 @@ public class AdvancedTextView extends TextView {
 
   public void setExpandTextSize(int expandTextSize) {
     this.expandTextSize = expandTextSize;
+  }
+
+  public void setExpandTextOnClickListener(OnClickListener expandTextOnClickListener) {
+    this.expandTextOnClickListener = expandTextOnClickListener;
   }
 
   @Override public void setText(CharSequence text, BufferType type) {
@@ -459,6 +464,7 @@ public class AdvancedTextView extends TextView {
     }
 
     expandableTextLayout.initExpandText(expandView, this);
+    expandableTextLayout.setExpandTextOnClickListener(expandTextOnClickListener);
   }
 
   private void drawAutoFitText(Canvas canvas) {

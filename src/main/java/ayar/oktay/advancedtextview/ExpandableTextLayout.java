@@ -15,6 +15,7 @@ import android.widget.TextView;
 public class ExpandableTextLayout extends LinearLayout implements View.OnClickListener {
   private AdvancedTextView expandTarget;
   private boolean expanded;
+  private OnClickListener expandTextOnClickListener;
 
   public ExpandableTextLayout(Context context) {
     this(context, null);
@@ -42,6 +43,10 @@ public class ExpandableTextLayout extends LinearLayout implements View.OnClickLi
 
     expandTarget = null;
     expanded = false;
+  }
+
+  public void setExpandTextOnClickListener(OnClickListener expandTextOnClickListener) {
+    this.expandTextOnClickListener = expandTextOnClickListener;
   }
 
   public TextView getExpandView() {
@@ -92,6 +97,10 @@ public class ExpandableTextLayout extends LinearLayout implements View.OnClickLi
       expanded = true;
 
       getExpandView().setVisibility(GONE);
+
+      if(expandTextOnClickListener!=null){
+        expandTextOnClickListener.onClick(v);
+      }
     }
   }
 }
