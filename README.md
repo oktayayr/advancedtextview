@@ -17,6 +17,9 @@ There are 5 main feaures (for now):
 
 ## Version Notes
 
+####0.4.5
+* onExpandTextClickListener added to Expandable Layout
+
 ####0.4.1
 * Detected bugs have been fixed
 
@@ -42,16 +45,16 @@ Features/Attributes below have been added to Expanding Text Layout
     <dependency>
 		<groupId>ayar.oktay.library</groupId>
 		<artifactId>advancedtextview</artifactId>
-		<version>0.4.1</version>
+		<version>0.4.5</version>
 		<type>pom</type>
 	</dependency>
 
 ###Gradle
 
-    compile 'ayar.oktay.library:advancedtextview:0.4.1'
+    compile 'ayar.oktay.library:advancedtextview:0.4.5'
 ###Ivy
 
-    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.4.1'>
+    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.4.5'>
 	  <artifact name='$AID' ext='pom'></artifact>
 	</dependency>
 
