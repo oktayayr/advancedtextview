@@ -17,6 +17,9 @@ There are 5 main feaures (for now):
 
 ## Version Notes
 
+####0.4.6
+* Minor bugfixes
+
 ####0.4.5
 * onExpandTextClickListener added to Expandable Layout
 
