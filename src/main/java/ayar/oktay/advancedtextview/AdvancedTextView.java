@@ -288,11 +288,13 @@ public class AdvancedTextView extends TextView {
         (int) DEF_MIN_TEXT_SIZE);
 
     // Obtain font file
-    int font = arr.getInt(R.styleable.AdvancedTextView_font, -1);
-    if (font >= 0 && Font.parse(font) != null) {
-      this.fontFile = Font.parse(font).getFileName();
-    } else {
-      this.fontFile = arr.getString(R.styleable.AdvancedTextView_fontFile);
+    this.fontFile = arr.getString(R.styleable.AdvancedTextView_fontFile);
+
+    if (fontFile == null) {
+      int font = arr.getInt(R.styleable.AdvancedTextView_font, -1);
+      if (font >= 0 && Font.parse(font) != null) {
+        this.fontFile = Font.parse(font).getFileName();
+      }
     }
 
     // Obtain counting text attributes
@@ -420,7 +422,7 @@ public class AdvancedTextView extends TextView {
       return;
     }
 
-    if(this.getLayout()==null) {
+    if (this.getLayout() == null) {
       return;
     }
 
