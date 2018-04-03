@@ -5,7 +5,7 @@
     <attr format="boolean" name="justifyText"/>
 
     <!-- Attributes for custom font-->
-    <attr format="enum" name="font">
+    <attr format="enum" name="typeface">
       <enum name="aller_bold" value="0"/>
       <enum name="aller_bold_italic" value="1"/>
       <enum name="aller_display" value="2"/>
