@@ -113,7 +113,7 @@ You can use any of them by declaring in your xml file.
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/very_long_text"
-        app:font="roboto_regular"
+        app:typeFace="roboto_regular"
         />
 
 
@@ -192,7 +192,7 @@ You can set attributes for entire project/application by setting them in styles.
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
     <!-- Customize your theme here. -->
-    <item name="font">roboto_regular</item>
+    <item name="typeFace">roboto_regular</item>
     <item name="justifyText">true</item>
     <item name="autoFit">true</item>
     <item name="android:maxLines">5</item>

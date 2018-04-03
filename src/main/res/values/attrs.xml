@@ -4,7 +4,7 @@
     <!-- Attributes for justified text alignment-->
     <attr format="boolean" name="justifyText"/>
 
-    <!-- Attributes for custom font-->
+    <!-- Attributes for custypeFacefont-->
     <attr format="enum" name="typeface">
       <enum name="aller_bold" value="0"/>
       <enum name="aller_bold_italic" value="1"/>

@@ -3,7 +3,7 @@ package ayar.oktay.advancedtextview;
 /**
  * Created by Oktay AYAR on 5/24/16.
  */
-public enum Font {
+public enum TypeFace {
   Aller_Bold(0),
   Aller_Bold_Italic(1),
   Aller_Display(2),
@@ -44,14 +44,14 @@ public enum Font {
 
   private int value;
 
-  Font(int value) {
+  TypeFace(int value) {
     this.value = value;
   }
 
-  public static Font parse(int value) {
-    for (Font font : Font.values()) {
-      if (font.getValue() == value) {
-        return font;
+  public static TypeFace parse(int value) {
+    for (TypeFace typeFace : TypeFace.values()) {
+      if (typeFace.getValue() == value) {
+        return typeFace;
       }
     }
 

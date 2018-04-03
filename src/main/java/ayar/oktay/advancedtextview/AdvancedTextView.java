@@ -51,7 +51,7 @@ public class AdvancedTextView extends TextView {
   private int minTextSize;
 
   // Attributes for custom fonts
-  private Font font;
+  private TypeFace typeFace;
   private String fontFile;
 
   // Attributes for counting text
@@ -158,15 +158,15 @@ public class AdvancedTextView extends TextView {
     }
   }
 
-  public Font getFont() {
-    return font;
+  public TypeFace getTypeFace() {
+    return typeFace;
   }
 
-  public void setFont(Font font) {
-    this.font = font;
+  public void setTypeFace(TypeFace typeFace) {
+    this.typeFace = typeFace;
 
-    if (font != null) {
-      this.fontFile = font.getFileName();
+    if (typeFace != null) {
+      this.fontFile = typeFace.getFileName();
 
       loadFont(this.fontFile);
     }
@@ -287,13 +287,13 @@ public class AdvancedTextView extends TextView {
     this.minTextSize = arr.getDimensionPixelSize(R.styleable.AdvancedTextView_minTextSize,
         (int) DEF_MIN_TEXT_SIZE);
 
-    // Obtain font file
+    // Obtain typeFace file
     this.fontFile = arr.getString(R.styleable.AdvancedTextView_fontFile);
 
     if (fontFile == null) {
-      int font = arr.getInt(R.styleable.AdvancedTextView_font, -1);
-      if (font >= 0 && Font.parse(font) != null) {
-        this.fontFile = Font.parse(font).getFileName();
+      int font = arr.getInt(R.styleable.AdvancedTextView_typeface, -1);
+      if (font >= 0 && TypeFace.parse(font) != null) {
+        this.fontFile = TypeFace.parse(font).getFileName();
       }
     }
 
@@ -333,7 +333,7 @@ public class AdvancedTextView extends TextView {
     }
 
     if (this.fontFile != null && fontFile.length() > 0) {
-      // Load font
+      // Load typeFace
       loadFont(this.fontFile);
     }
   }
