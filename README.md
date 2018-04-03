@@ -17,6 +17,10 @@ There are 5 main feaures (for now):
 
 ## Version Notes
 
+#### 0.5.0
+* Build api versions updated
+* Font attribute named changed to **TypeFace**
+
 #### 0.4.6
 * Minor bugfixes
 
@@ -113,7 +117,7 @@ You can use any of them by declaring in your xml file.
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/very_long_text"
-        app:typeFace="roboto_regular"
+        app:typeface="roboto_regular"
         />
 
 
