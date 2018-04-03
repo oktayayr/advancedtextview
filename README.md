@@ -17,22 +17,22 @@ There are 5 main feaures (for now):
 
 ## Version Notes
 
-####0.4.6
+#### 0.4.6
 * Minor bugfixes
 
-####0.4.5
+#### 0.4.5
 * onExpandTextClickListener added to Expandable Layout
 
-####0.4.1
+#### 0.4.1
 * Detected bugs have been fixed
 
-####0.4.0
+#### 0.4.0
 * Counting text feature has been added
 
-####0.3.5
+#### 0.3.5
 * Detected bugs have been fixed
 
-####0.3.0
+#### 0.3.0
 Features/Attributes below have been added to Expanding Text Layout
 
 * expandTextPosition
@@ -41,35 +41,35 @@ Features/Attributes below have been added to Expanding Text Layout
 * expandEllipsize
 
 
-##Installation
+## Installation
 
-###Maven
+### Maven
 
     <dependency>
 		<groupId>ayar.oktay.library</groupId>
 		<artifactId>advancedtextview</artifactId>
-		<version>0.4.5</version>
+		<version>0.5.0</version>
 		<type>pom</type>
 	</dependency>
 
-###Gradle
+### Gradle
 
-    compile 'ayar.oktay.library:advancedtextview:0.4.5'
-###Ivy
+    compile 'ayar.oktay.library:advancedtextview:0.5.0'
+### Ivy
 
-    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.4.5'>
+    <dependency org='ayar.oktay.library' name='advancedtextview' rev='0.5.0'>
 	  <artifact name='$AID' ext='pom'></artifact>
 	</dependency>
 
-##Features
+## Features
 
-###Justified Text Alignment
+### Justified Text Alignment
 
 You can use justified text alignment simply by adding one attribute to your xml file
 
 <img src="/arts/justifytext_ss.png" width="35%" height="35%" />
 
-####XML File
+#### XML File
 
     <ayar.oktay.advancedtextview.AdvancedTextView
             android:layout_width="wrap_content"
@@ -78,7 +78,7 @@ You can use justified text alignment simply by adding one attribute to your xml 
             app:justifyText="true"
             />
 
-###Custom Fonts
+### Custom Fonts
 
 You can use custom fonts with AdvancedTextview. 
 
@@ -127,7 +127,7 @@ You can also load .ttf file from assets folder by declaring in your xml file.
         app:fontFile="path_to_your_font_file"
         />
 
-###Expandable Text Layout
+### Expandable Text Layout
 
 AdvancedTextView provides expandable layout for long texts. You can use this feature with **ExpandableTextLayout**.
  `expandable`, `android:maxLines` and `expandText` must be set for expandable feature.
@@ -137,7 +137,7 @@ AdvancedTextView provides expandable layout for long texts. You can use this fea
 
 <img src="/arts/expandtext_ss2.png" width="35%" height="35%" />
 
-####Attributes
+#### Attributes
 
 * expandable (boolean): Enables/Disables expandable feature
 * expandText (String): Text which is shown for expanding layout
@@ -155,7 +155,7 @@ AdvancedTextView provides expandable layout for long texts. You can use this fea
 
 **You cannot use this feature without using AdvancedTexview as child of ExpandableTextLayout.**
 
-###AutoFit Text
+### AutoFit Text
 
 You can fit your your texts into determined lines. You must set `autoFit` and `android:maxLines`  to use this feature.  You can also set minTextSize to determine minimum text size for auto fit process (Default is 6dp).
 
@@ -175,7 +175,7 @@ You can demonstrate counting process from start value to end value.
 
 <img src="/arts/counting_text_demo.gif" width="25%" height="25%" />
 
-####Attributes
+#### Attributes
 
 * coutingText (boolean): Enables/Disables counting text feature
 * coutingText_startValue (integer): Determines start value of counting text (Default value is 0)
@@ -186,7 +186,7 @@ You can demonstrate counting process from start value to end value.
 **Note: You cannot use counting text feature with Justified Text Alignment, Expandable Text Layout or AutoFit Text**
 
 
-##Usage with Styles
+## Usage with Styles
 
 You can set attributes for entire project/application by setting them in styles.
 
@@ -199,7 +199,7 @@ You can set attributes for entire project/application by setting them in styles.
   </style>
 
 
-##License
+## License
 
                                  Apache License
                            Version 2.0, January 2004
@@ -389,7 +389,7 @@ You can set attributes for entire project/application by setting them in styles.
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright {yyyy} {name of copyright owner}
+   Copyright {2018} {Oktay AYAR}
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
